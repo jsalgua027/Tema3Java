@@ -34,5 +34,8 @@ public class Ej01 {
         System.out.print("mostrar la edad: ");
         System.out.println(edad);
     }
-
+    //para eda=15 es menor de edad
+    //para eda=18 es mayor de edad
+    //para edad=60 es mayor de edad
+    
 }

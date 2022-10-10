@@ -36,12 +36,36 @@ public class Ej05 {
 
         if (opcion == 1) {
             System.out.println("Ha seleccionado calcular el área de un cuadrado...");
+            //area de un cuadrado es lado por lado siendo sus lados iguales 
+            double ladoCuadrado;
+            double resultadoCuadrado;
+            System.out.println("Indique el lado del cuadrado");
+            ladoCuadrado = entrada.nextDouble();
+            resultadoCuadrado = Math.pow(ladoCuadrado, 2);
+            System.out.println("El área del cuadrado es= " + resultadoCuadrado);
         } else {
             if (opcion == 2) {
-                System.out.println("Ha seleccionado calcular el 	área de un triángulo...");
+                System.out.println("Ha seleccionado calcular el área de un triángulo...");
+                // el area de cualquier trinagulo es (base*altura)/2
+                double base;
+                double altura;
+                double resultadoTriangulo;
+                System.out.println("Indique la altura del triangulo");
+                altura = entrada.nextDouble();
+                System.out.println("Indique la base del triangulo");
+                base = entrada.nextDouble();
+                resultadoTriangulo = (base * altura) / 2;
+                System.out.println("El área del triangulo es= " + resultadoTriangulo);
             } else {
                 if (opcion == 3) {
                     System.out.println("Ha seleccionado calcular el área de un círculo...");
+                    //area circulo es Pi*r al cuadrado
+                    double radioCirculo;
+                    double resultadoCirculo;
+                    System.out.println("Indique el radio del circulo");
+                    radioCirculo = entrada.nextDouble();
+                    resultadoCirculo = Math.pow(radioCirculo, 2) * Math.PI;
+                    System.out.println("El área del circulo es= " + resultadoCirculo);
                 } else {
                     System.out.println("Ha seleccionado terminar");
                 }
