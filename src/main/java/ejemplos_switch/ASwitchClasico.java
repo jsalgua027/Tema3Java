@@ -39,9 +39,7 @@ public class ASwitchClasico {
             case 'b':
                 System.out.println("Letra b");
                 break;
-//            case 'b':                     // Error, case b duplicado
-//                System.out.println("Letra b");
-//                break;
+
             case 'a':
                 System.out.println("Letra a");
                 break;
