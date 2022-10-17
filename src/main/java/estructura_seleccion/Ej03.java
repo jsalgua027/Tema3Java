@@ -29,8 +29,9 @@ public class Ej03 {
         int publico = 19500;
         int vendidas = 19000;
         int aforo = 2000;
-        String status = (publico < aforo) ? "Cabe mas gente" : (vendidas < aforo) ? "Aun no hemos vendido todo" : "Esta todo vendido";
-        // devuelve aun no hemos vendido todo
+        String status = (publico < aforo) ? "Cabe mas gente" : (vendidas < aforo)
+                ? "Aun no hemos vendido todo" : "Esta todo vendido";
+        // devuelve Esta todo vendido
     }
 
 }
