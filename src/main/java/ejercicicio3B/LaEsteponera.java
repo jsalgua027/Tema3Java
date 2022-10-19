@@ -58,9 +58,21 @@ public class LaEsteponera {
         final double MANOBRAPORUNIDADM1T1= 0.15;
         final double MANOBRAPORUNIDADM2T2P1=0.22;
         
-        //variables para relaizar calculos
+        //variables para realizar los  calculos
         double costeProduccionProducto;
         double precioVentaProducto;
+        
+        //variable para el menu Switch
+        String menuSwitch;
+        
+        //String textblock para mostrar por JOptions
+        String textoMenu="""
+                            ************************La Esteponera******************
+                          M1. P
+                         
+                         
+                         """;
+        
         
         
         
