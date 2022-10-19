@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author nacho
  */
-public class EjemplosVico {
+public class EjemplosVicoIfElseClase {
 
     /**
      * @param args the command line arguments

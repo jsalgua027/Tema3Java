@@ -32,7 +32,7 @@ public class LaEsteponera {
      * del coste de producción. Hay que tener en cuenta lo siguiente:
      *
      * Artículos M1, M2 y P1. Precio de venta unitario = coste de producción +
-     * 50 % del coste de producción Resto de artículos. Precio de venta unitario
+     * 50 % del coste de producción. Resto de artículos. Precio de venta unitario
      * = coste de producción + 65 % del coste de producción
      *
      * La fábrica necesita un programa que realice algunos cálculos para ver si
@@ -96,7 +96,7 @@ public class LaEsteponera {
                     costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
                     // precio de venta por unidad
                     precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1); 
                     //obtengo el beneficio por unidad vendida
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
                     // como no se puede fabricar media unidades redondeo hacia arriba
@@ -107,7 +107,7 @@ public class LaEsteponera {
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necsitan vender:  %d unidades
+                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
                                                                                    """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
@@ -135,7 +135,7 @@ public class LaEsteponera {
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necsitan vender:  %d unidades
+                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
                                                                                    """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
@@ -162,7 +162,7 @@ public class LaEsteponera {
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necsitan vender:  %d unidades
+                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
                                                                                    """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
@@ -189,7 +189,7 @@ public class LaEsteponera {
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necsitan vender:  %d unidades
+                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
                                                                                    """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
@@ -216,7 +216,7 @@ public class LaEsteponera {
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necsitan vender:  %d unidades
+                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
                                                                                    """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);

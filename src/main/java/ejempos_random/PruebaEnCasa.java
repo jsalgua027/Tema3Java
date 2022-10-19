@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author Windows10
  */
-public class Prueba {
+public class PruebaEnCasa {
 
     /**
      * @param args the command line arguments
