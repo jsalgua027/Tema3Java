@@ -65,64 +65,65 @@ public class Calculadora {
 //
 //        }
         //ESTO ES UN MEJORA  USANDO IF ELSE
-//        if (opcion.equals("1")) {
-//            resultado = operando1 + operando2;
-//            System.out.printf("El resultado es= %.2f", resultado);
-//
-//        } else {
-//
-//            // si la opcion es 2 resto
-//            if (opcion.equals("2")) {
-//                resultado = operando1 - operando2;
-//                System.out.printf("El resultado es= %.2f", resultado);
-//
-//            } else {
-//
-//                // si la opcion es 3 multiplico
-//                if (opcion.equals("3")) {
-//                    resultado = operando1 * operando2;
-//                    System.out.printf("El resultado es= %.2f", resultado);
-//
-//                } else {
-//                    // si la opcion es 4 divido
-//                    if (opcion.equals("4")) {
-//                        resultado = operando1 / operando2;
-//                        System.out.printf("El resultado es= %.2f", resultado);
-//
-//                    } else {
-//                        JOptionPane.showConfirmDialog(null, "opcion incorrecta");
-//                    }
-//
-//                }
-//            }
-//        }
-
-        //OPCION IF ELSE IF
+        
         if (opcion.equals("1")) {
             resultado = operando1 + operando2;
             System.out.printf("El resultado es= %.2f", resultado);
 
-        } else if (opcion.equals("2")) {
+        } else {
 
             // si la opcion es 2 resto
-            resultado = operando1 - operando2;
-            System.out.printf("El resultado es= %.2f", resultado);
+            if (opcion.equals("2")) {
+                resultado = operando1 - operando2;
+                System.out.printf("El resultado es= %.2f", resultado);
 
-        } else if (opcion.equals("3")) {
+            } else {
 
-            // si la opcion es 3 multiplico
-            resultado = operando1 * operando2;
-            System.out.printf("El resultado es= %.2f", resultado);
+                // si la opcion es 3 multiplico
+                if (opcion.equals("3")) {
+                    resultado = operando1 * operando2;
+                    System.out.printf("El resultado es= %.2f", resultado);
 
-        } else if (opcion.equals("4")) {
-            // si la opcion es 4 divido
+                } else {
+                    // si la opcion es 4 divido
+                    if (opcion.equals("4")) {
+                        resultado = operando1 / operando2;
+                        System.out.printf("El resultado es= %.2f", resultado);
 
-            resultado = operando1 / operando2;
-            System.out.printf("El resultado es= %.2f", resultado);
+                    } else {
+                        JOptionPane.showConfirmDialog(null, "opcion incorrecta");
+                    }
 
-        } else {
-            JOptionPane.showConfirmDialog(null, "opcion incorrecta");
+                }
+            }
         }
+
+//        //OPCION IF ELSE IF
+//        if (opcion.equals("1")) {
+//            resultado = operando1 + operando2;
+//            System.out.printf("El resultado es= %.2f", resultado);
+//
+//        } else if (opcion.equals("2")) {
+//
+//            // si la opcion es 2 resto
+//            resultado = operando1 - operando2;
+//            System.out.printf("El resultado es= %.2f", resultado);
+//
+//        } else if (opcion.equals("3")) {
+//
+//            // si la opcion es 3 multiplico
+//            resultado = operando1 * operando2;
+//            System.out.printf("El resultado es= %.2f", resultado);
+//
+//        } else if (opcion.equals("4")) {
+//            // si la opcion es 4 divido
+//
+//            resultado = operando1 / operando2;
+//            System.out.printf("El resultado es= %.2f", resultado);
+//
+//        } else {
+//            JOptionPane.showConfirmDialog(null, "opcion incorrecta");
+//        }
 
     }
 }
