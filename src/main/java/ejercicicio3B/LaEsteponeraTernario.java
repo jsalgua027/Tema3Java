@@ -65,6 +65,7 @@ public class LaEsteponeraTernario {
             case "M1" ,"M2", "P1","T1","T2" -> {
                  // BigDecimal bD= new BigDecimal(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+            //   BigDecimal bd2 = new BigDecimal(precioMateriaPrimaXUnidad); //tipo primitivo decimal
           //   precioMateriaPrimaXUnidad=bD;
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
