@@ -66,38 +66,34 @@ public class LaEsteponeraTernario {
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
                     //gestiono COSTE PRODUCCION de M1 y T1 con operador ternario
                     costeProduccionProductoXUnidad
-                            = (menuSwitch.equalsIgnoreCase("M1") || menuSwitch.equalsIgnoreCase("T1")) ? costeProduccionProductoXUnidad : costeProduccionProductoXUnidad;
-                    //*****************************Si sale true******************************
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
-                    // gestiono el PRECIO VENTA por unidad
-                    precioMateriaPrimaXUnidad = (menuSwitch.equalsIgnoreCase("M1")) ? precioMateriaPrimaXUnidad : precioMateriaPrimaXUnidad;
-                    //true precio venta
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
-                    //false  precio venta
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
-                    //****************************si sale false********************************
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+                            = (menuSwitch.equalsIgnoreCase("M1") || menuSwitch.equalsIgnoreCase("T1"))
+                            ? precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1 : precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+
+                    precioMateriaPrimaXUnidad = (menuSwitch.equalsIgnoreCase("M1"))
+                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1)
+                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+
                     // gestiono PRECIO VENTA
-                    precioVentaProductoXUnidad = (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2")) ? precioVentaProductoXUnidad : precioVentaProductoXUnidad;
-                    // true  precio venta
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
-                    //false precio venta
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+                    precioVentaProductoXUnidad = (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2"))
+                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1)
+                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+
                     //obtengo beneficio
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
 
                     cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
 
                     textoMenuFinal = switch (menuSwitch.toUpperCase()) {
-                        case "M1" -> MANTECADOSLIMON;
-                        case "P1" -> POLVORONES;
-                        case "T1" -> TURRONCHOCOLATE;
-                        case "T2" -> TURRONCLASICO;
-                        default -> MAZAPANES;
+                        case "M1" ->
+                            MANTECADOSLIMON;
+                        case "P1" ->
+                            POLVORONES;
+                        case "T1" ->
+                            TURRONCHOCOLATE;
+                        case "T2" ->
+                            TURRONCLASICO;
+                        default ->
+                            MAZAPANES;
                     };
 
                     String resultadofinal = """
