@@ -56,11 +56,11 @@ public class LaEsteponera {
     public static void main(String[] args) {
         // constantes 
 
-        final double MANOBRAPORUNIDADM1T1 = 0.15;
-        final double MANOBRAPORUNIDADM2T2P1 = 0.22;
+        final double MANOBRA_POR_UNIDAD_M1T1 = 0.15;
+        final double MANOBRA_POR_UNIDAD_M2T2P1 = 0.22;
 
-        final double PORCENTAJECOSTEPRODUCIONM1M2P1 = 0.5;
-        final double PORCENATJECOSTEPRODUCCIONT1T2 = 0.65;
+        final double PORCENTAJE_COSTE_PRODUCION_M1M2P1 = 0.5;
+        final double PORCENATJE_COSTE_PRODUCCION_T1T2 = 0.65;
 
         final double LIMITE_INFERIOR = 0.1;
         final double LIMITE_SUPERIOR = 1;
@@ -73,7 +73,7 @@ public class LaEsteponera {
 
         String textoMenuFinal;
 
-        final int BENEFICIOSUPERAR = 2500;
+        final int BENEFICIO_SUPERAR = 2500;
         //variables para realizar los  calculos
         double precioMateriaPrimaXUnidad;
         double costeProduccionProductoXUnidad;
@@ -104,14 +104,14 @@ public class LaEsteponera {
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
                     // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
+                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M1T1;
                     // precio de venta por unidad
                     precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
                     //obtengo el beneficio por unidad vendida
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
                     // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
                     //variable para mostrar resultados
                     String resultadofinal = """
                                                             Para los Mantecados de Limón
@@ -132,14 +132,14 @@ public class LaEsteponera {
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
                     // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M2T2P1;
                     // precio de venta por unidad
                     precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
                     //obtengo el beneficio por unidad vendida
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
                     // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
                     //variable para mostrar resultados
                     String resultadofinal = """
                                                             Para los Polvorones
@@ -160,14 +160,14 @@ public class LaEsteponera {
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
                     // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
+                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M1T1;
                     // precio de venta por unidad
                     precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
                     //obtengo el beneficio por unidad vendida
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
                     // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
                     String resultadofinal = """
                                                             Para los Mantecados de Turrón de chocolate
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
@@ -187,14 +187,14 @@ public class LaEsteponera {
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
                     // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M2T2P1;
                     // precio de venta por unidad
                     precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
                     //obtengo el beneficio por unidad vendida
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
                     // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
                     String resultadofinal = """
                                                             Para los Mantecados de Turrón de clásico
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
@@ -214,14 +214,14 @@ public class LaEsteponera {
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
                     // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M2T2P1;
                     // precio de venta por unidad
                     precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
                     //obtengo el beneficio por unidad vendida
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
                     // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
                     String resultadofinal = """
                                                             Para los Mantecados de Mazapanes
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros

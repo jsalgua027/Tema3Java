@@ -4,6 +4,8 @@
  */
 package ejercicicio3B;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,11 +19,11 @@ public class LaEsteponeraTernario {
      */
     public static void main(String[] args) {
 
-        final double MANOBRAPORUNIDADM1T1 = 0.15;
-        final double MANOBRAPORUNIDADM2T2P1 = 0.22;
+        final double MANOBRA_POR_UNIDAD_M1T1 = 0.15;
+        final double MANOBRA_POR_UNIDAD_M2T2P1 = 0.22;
 
-        final double PORCENTAJECOSTEPRODUCIONM1M2P1 = 0.5;
-        final double PORCENATJECOSTEPRODUCCIONT1T2 = 0.65;
+        final double PORCENTAJE_COSTE_PRODUCION_M1M2P1 = 0.5;
+        final double PORCENATJE_COSTE_PRODUCCION_T1T2 = 0.65;
 
         final double LIMITE_INFERIOR = 0.1;
         final double LIMITE_SUPERIOR = 1;
@@ -34,7 +36,7 @@ public class LaEsteponeraTernario {
 
         String textoMenuFinal;
 
-        final int BENEFICIOSUPERAR = 2500;
+        final int BENEFICIO_SUPERAR = 2500;
         //variables para realizar los  calculos
         double precioMateriaPrimaXUnidad;
         double costeProduccionProductoXUnidad = 0;
@@ -58,30 +60,32 @@ public class LaEsteponeraTernario {
                          """;
 
         menuSwitch = JOptionPane.showInputDialog(textoMenu);
-
+      
         switch (menuSwitch.toUpperCase()) {
             case "M1" ,"M2", "P1","T1","T2" -> {
-                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+                 // BigDecimal bD= new BigDecimal(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+               precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+          //   precioMateriaPrimaXUnidad=bD;
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
                     //gestiono COSTE PRODUCCION de M1 y T1 con operador ternario
                     costeProduccionProductoXUnidad
                             = (menuSwitch.equalsIgnoreCase("M1") || menuSwitch.equalsIgnoreCase("T1"))
-                            ? precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1 : precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+                            ? precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M1T1 : precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M2T2P1;
 
                     precioMateriaPrimaXUnidad = (menuSwitch.equalsIgnoreCase("M1"))
-                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1)
-                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1)
+                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
 
                     // gestiono PRECIO VENTA
                     precioVentaProductoXUnidad = (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2"))
-                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1)
-                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1)
+                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
 
                     //obtengo beneficio
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
 
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
 
                     textoMenuFinal = switch (menuSwitch.toUpperCase()) {
                         case "M1" ->
@@ -101,8 +105,8 @@ public class LaEsteponeraTernario {
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(textoMenuFinal, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
+                                                            Para llegar a la cantidad de %d euros de beneficio se necesitan vender:  %d unidades
+                                                                                   """.formatted(textoMenuFinal, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, BENEFICIO_SUPERAR,cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
 
