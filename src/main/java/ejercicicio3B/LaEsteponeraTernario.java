@@ -102,7 +102,7 @@ public class LaEsteponeraTernario {
                     };
 
                     String resultadofinal = """
-                                                            Para los Mantecados de %s
+                                                            Para los   %s
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
