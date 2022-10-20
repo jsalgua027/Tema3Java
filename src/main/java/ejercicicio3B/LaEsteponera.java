@@ -32,8 +32,8 @@ public class LaEsteponera {
      * del coste de producción. Hay que tener en cuenta lo siguiente:
      *
      * Artículos M1, M2 y P1. Precio de venta unitario = coste de producción +
-     * 50 % del coste de producción. Resto de artículos. Precio de venta unitario
-     * = coste de producción + 65 % del coste de producción
+     * 50 % del coste de producción. Resto de artículos. Precio de venta
+     * unitario = coste de producción + 65 % del coste de producción
      *
      * La fábrica necesita un programa que realice algunos cálculos para ver si
      * es rentable vender un tipo de producto. El programa debe solicitar el
@@ -62,6 +62,17 @@ public class LaEsteponera {
         final double PORCENTAJECOSTEPRODUCIONM1M2P1 = 0.5;
         final double PORCENATJECOSTEPRODUCCIONT1T2 = 0.65;
 
+        final double LIMITE_INFERIOR = 0.1;
+        final double LIMITE_SUPERIOR = 1;
+
+        final String MANTECADOSLIMON = "Mantecados de  Limón";
+        final String POLVORONES = "Polvorones";
+        final String TURRONCHOCOLATE = "Turrón de Chocolate";
+        final String TURRONCLASICO = "Turrón clásico";
+        final String MAZAPANES = "Mazapanes";
+
+        String textoMenuFinal;
+
         final int BENEFICIOSUPERAR = 2500;
         //variables para realizar los  calculos
         double precioMateriaPrimaXUnidad;
@@ -76,7 +87,7 @@ public class LaEsteponera {
         //String textblock para mostrar por JOptions
         String textoMenu = """
                             ************************La Esteponera*********************
-                          M1. Para el cálculo con Mantecados de Limóm
+                          M1. Para el cálculo con Mantecados de Limón
                           P1. Para el cálculo con Polvorones
                           T1. Para el cálculo con Turrón de Chocolate
                           T2. Para el cálculo con Turrón Clásico
@@ -87,144 +98,221 @@ public class LaEsteponera {
 
         menuSwitch = JOptionPane.showInputDialog(textoMenu);
         //Le facilito al usuario que no se preocupe de meter mayusculas o minusculas
+//        switch (menuSwitch.toUpperCase()) {
+//            case "M1" -> {
+//                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+//                // si el precio de la materia prima es correcto
+//                if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
+//                    // coste de produccion unitario
+//                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
+//                    // precio de venta por unidad
+//                    precioVentaProductoXUnidad
+//                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+//                    //obtengo el beneficio por unidad vendida
+//                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
+//                    // como no se puede fabricar media unidades redondeo hacia arriba
+//                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+//                    //variable para mostrar resultados
+//                    String resultadofinal = """
+//                                                            Para los Mantecados de Limón
+//                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
+//                                                            -El precio de venta por unidad es de:  %.2f euros
+//                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
+//                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
+//                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
+//
+//                    JOptionPane.showMessageDialog(null, resultadofinal);
+//                    //si el precio de la materia prima se sale de rango
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
+//                }
+//            }
+//            case "P1" -> {
+//                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+//                // si el precio de la materia prima es correcto
+//                if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
+//                    // coste de produccion unitario
+//                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+//                    // precio de venta por unidad
+//                    precioVentaProductoXUnidad
+//                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+//                    //obtengo el beneficio por unidad vendida
+//                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
+//                    // como no se puede fabricar media unidades redondeo hacia arriba
+//                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+//                    //variable para mostrar resultados
+//                    String resultadofinal = """
+//                                                            Para los Polvorones
+//                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
+//                                                            -El precio de venta por unidad es de:  %.2f euros
+//                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
+//                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
+//                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
+//
+//                    JOptionPane.showMessageDialog(null, resultadofinal);
+//                    //si se sale fuera de rango
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
+//                }
+//            }
+//            case "T1" -> {
+//                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+//                // si el precio de la materia prima es correcto
+//                if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
+//                    // coste de produccion unitario
+//                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
+//                    // precio de venta por unidad
+//                    precioVentaProductoXUnidad
+//                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+//                    //obtengo el beneficio por unidad vendida
+//                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
+//                    // como no se puede fabricar media unidades redondeo hacia arriba
+//                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+//                    String resultadofinal = """
+//                                                            Para los Mantecados de Turrón de chocolate
+//                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
+//                                                            -El precio de venta por unidad es de:  %.2f euros
+//                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
+//                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
+//                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
+//
+//                    JOptionPane.showMessageDialog(null, resultadofinal);
+//                    // si se sale fuera de rango
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
+//                }
+//            }
+//            case "T2" -> {
+//                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+//                // si el precio de la materia prima es correcto
+//                if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
+//                    // coste de produccion unitario
+//                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+//                    // precio de venta por unidad
+//                    precioVentaProductoXUnidad
+//                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+//                    //obtengo el beneficio por unidad vendida
+//                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
+//                    // como no se puede fabricar media unidades redondeo hacia arriba
+//                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+//                    String resultadofinal = """
+//                                                            Para los Mantecados de Turrón de clásico
+//                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
+//                                                            -El precio de venta por unidad es de:  %.2f euros
+//                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
+//                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
+//                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
+//
+//                    JOptionPane.showMessageDialog(null, resultadofinal);
+//                    //si se sale de rango el precio de la materia prima
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
+//                }
+//            }
+//            case "M2" -> {
+//                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+//                // si el precio de la materia prima es correcto
+//                if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
+//                    // coste de produccion unitario
+//                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+//                    // precio de venta por unidad
+//                    precioVentaProductoXUnidad
+//                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+//                    //obtengo el beneficio por unidad vendida
+//                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
+//                    // como no se puede fabricar media unidades redondeo hacia arriba
+//                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
+//                    String resultadofinal = """
+//                                                            Para los Mantecados de Mazapanes
+//                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
+//                                                            -El precio de venta por unidad es de:  %.2f euros
+//                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
+//                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
+//                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
+//
+//                    JOptionPane.showMessageDialog(null, resultadofinal);
+//                    //si se sale de  rango el precio de la materia prima
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
+//                }
+//            }
+//            //si la opcion elegida del menu es incorrecta
+//            default ->
+//                JOptionPane.showMessageDialog(null, "opcion incorrecta");
+//        }
+
+//        // **************************************OTRA VERSION*******************************************************************
         switch (menuSwitch.toUpperCase()) {
-            case "M1" -> {
+            case "M1" ,"M2", "P1","T1","T2" -> {
                 precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
                 // si el precio de la materia prima es correcto
-                if (precioMateriaPrimaXUnidad >= 0.1 && precioMateriaPrimaXUnidad <= 1) {
-                    // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
-                    // precio de venta por unidad
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1); 
-                    //obtengo el beneficio por unidad vendida
+                if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
+                    if (menuSwitch.equalsIgnoreCase("M1") || menuSwitch.equalsIgnoreCase("T1")) {
+
+                        costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
+                        if (menuSwitch.equalsIgnoreCase("M1")) {
+                            precioVentaProductoXUnidad
+                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+                        } else {
+                            precioVentaProductoXUnidad
+                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+
+                        }
+
+                    } else {
+
+                        costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
+                        if (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2")) {
+
+                            precioVentaProductoXUnidad
+                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
+
+                        } else {
+                            precioVentaProductoXUnidad
+                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
+
+                        }
+
+                    }
+
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
-                    // como no se puede fabricar media unidades redondeo hacia arriba
+
                     cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
-                    //variable para mostrar resultados
+
+                    switch (menuSwitch.toUpperCase()) {
+                        case "M1":
+                            textoMenuFinal = MANTECADOSLIMON;
+                            break;
+                        case "P1":
+                            textoMenuFinal = POLVORONES;
+                            break;
+                        case "T1":
+                            textoMenuFinal = TURRONCHOCOLATE;
+                            break;
+                        case "T2":
+                            textoMenuFinal = TURRONCLASICO;
+                            break;
+
+                        default:
+                            textoMenuFinal = MAZAPANES;
+
+                    }
+
                     String resultadofinal = """
-                                                            Para los Mantecados de Limón
+                                                            Para los Mantecados de %s
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
                                                             Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
+                                                                                   """.formatted(textoMenuFinal, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
-                    //si el precio de la materia prima se sale de rango
+
                 } else {
                     JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
                 }
             }
-            case "P1" -> {
-                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
-                // si el precio de la materia prima es correcto
-                if (precioMateriaPrimaXUnidad >= 0.1 && precioMateriaPrimaXUnidad <= 1) {
-                    // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
-                    // precio de venta por unidad
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
-                    //obtengo el beneficio por unidad vendida
-                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
-                    // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
-                    //variable para mostrar resultados
-                    String resultadofinal = """
-                                                            Para los Polvorones
-                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
-                                                            -El precio de venta por unidad es de:  %.2f euros
-                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
 
-                    JOptionPane.showMessageDialog(null, resultadofinal);
-                    //si se sale fuera de rango
-                } else {
-                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
-                }
-            }
-            case "T1" -> {
-                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
-                // si el precio de la materia prima es correcto
-                if (precioMateriaPrimaXUnidad >= 0.1 && precioMateriaPrimaXUnidad <= 1) {
-                    // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM1T1;
-                    // precio de venta por unidad
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
-                    //obtengo el beneficio por unidad vendida
-                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
-                    // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
-                    String resultadofinal = """
-                                                            Para los Mantecados de Turrón de chocolate
-                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
-                                                            -El precio de venta por unidad es de:  %.2f euros
-                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
-
-                    JOptionPane.showMessageDialog(null, resultadofinal);
-                    // si se sale fuera de rango
-                } else {
-                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
-                }
-            }
-            case "T2" -> {
-                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
-                // si el precio de la materia prima es correcto
-                if (precioMateriaPrimaXUnidad >= 0.1 && precioMateriaPrimaXUnidad <= 1) {
-                    // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
-                    // precio de venta por unidad
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJECOSTEPRODUCCIONT1T2);
-                    //obtengo el beneficio por unidad vendida
-                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
-                    // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
-                    String resultadofinal = """
-                                                            Para los Mantecados de Turrón de clásico
-                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
-                                                            -El precio de venta por unidad es de:  %.2f euros
-                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
-
-                    JOptionPane.showMessageDialog(null, resultadofinal);
-                    //si se sale de rango el precio de la materia prima
-                } else {
-                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
-                }
-            }
-            case "M2" -> {
-                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
-                // si el precio de la materia prima es correcto
-                if (precioMateriaPrimaXUnidad >= 0.1 && precioMateriaPrimaXUnidad <= 1) {
-                    // coste de produccion unitario
-                    costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRAPORUNIDADM2T2P1;
-                    // precio de venta por unidad
-                    precioVentaProductoXUnidad
-                            = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJECOSTEPRODUCIONM1M2P1);
-                    //obtengo el beneficio por unidad vendida
-                    beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
-                    // como no se puede fabricar media unidades redondeo hacia arriba
-                    cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIOSUPERAR / beneficioXUnidad);
-                    String resultadofinal = """
-                                                            Para los Mantecados de Mazapanes
-                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
-                                                            -El precio de venta por unidad es de:  %.2f euros
-                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
-                                                            Para llegar a la cantidad de 2500 euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, cantidadUnidadesParaBeneficio);
-
-                    JOptionPane.showMessageDialog(null, resultadofinal);
-                    //si se sale de  rango el precio de la materia prima
-                } else {
-                    JOptionPane.showMessageDialog(null, "El precio de la Materia Prima no es correcto");
-                }
-            }
             //si la opcion elegida del menu es incorrecta
             default ->
                 JOptionPane.showMessageDialog(null, "opcion incorrecta");
