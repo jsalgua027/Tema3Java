@@ -109,13 +109,13 @@ public class LaEsteponeraMejorado {
                             MAZAPANES;
                     };
 
-                  String resultadofinal = """
+                    String resultadofinal = """
                                                             Para los Mantecados de %s
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
                                                             Para llegar a la cantidad de %d euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(textoMenuFinal, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, BENEFICIO_SUPERAR,cantidadUnidadesParaBeneficio);
+                                                                                   """.formatted(textoMenuFinal, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, BENEFICIO_SUPERAR, cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
 
