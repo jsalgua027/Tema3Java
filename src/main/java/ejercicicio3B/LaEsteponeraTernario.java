@@ -65,7 +65,7 @@ public class LaEsteponeraTernario {
             case "M1" ,"M2", "P1","T1","T2" -> {
                  // BigDecimal bD= new BigDecimal(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
-            //   BigDecimal bd2 = new BigDecimal(precioMateriaPrimaXUnidad); //tipo primitivo decimal
+            //  BigDecimal bd2 = new BigDecimal(precioMateriaPrimaXUnidad); //tipo primitivo decimal
           //   precioMateriaPrimaXUnidad=bD;
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
@@ -79,7 +79,7 @@ public class LaEsteponeraTernario {
                             : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
 
                     // gestiono PRECIO VENTA
-                    precioVentaProductoXUnidad = (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2"))
+                    precioVentaProductoXUnidad = (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2")||menuSwitch.equalsIgnoreCase("M1"))
                             ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1)
                             : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
 
