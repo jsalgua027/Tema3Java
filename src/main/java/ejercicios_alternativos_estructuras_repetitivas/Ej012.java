@@ -30,7 +30,7 @@ public class Ej012 {
      */
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        Random numAleatorio= new Random();
+        Random numAleatorio = new Random();
         String textoMenu = """
                                                 ************************ADIVINA EL NUMERO THE BEST GAME *************
                                                             Teclea   si   para empezar partida 
@@ -46,36 +46,52 @@ public class Ej012 {
 
         //variables
         int numeroPensadoOrdenador; //numero que tiene que adivinar el usuario
-        
-        int contadorIntentos; // variable para controlar los intentos
-        
-        int numeroUsuario; // variable para los numeros que mete el usuario
-        
-        
-        do {            
-            
+
+        int contadorIntentos = 0; // variable para controlar los intentos
+
+        int numeroUsuario = 0; // variable para los numeros que mete el usuario
+
+        do {//bucle del menu
+
             System.out.println(textoMenu);
-            opcionMenu= teclado.nextLine();
-            if (opcionMenu.equalsIgnoreCase("si")||(opcionMenu.equalsIgnoreCase("no"))){
-            
-            
-             }else{
-            
+            opcionMenu = teclado.nextLine();
+            if (opcionMenu.equalsIgnoreCase("si")) {
+
+                numeroPensadoOrdenador = numAleatorio.nextInt(VALOR_MAXIMO - VALOR_MINIMO + 1) + VALOR_MINIMO;
+                System.out.println("el numero pensado es: " + numeroPensadoOrdenador);
+                do {//bucle para los 3 intentos
+                    System.out.println("eljiga un numero del 10 al 20, tienes 3 intentos");
+                    numeroUsuario = teclado.nextInt();
+                    contadorIntentos++;
+                    if (numeroUsuario > numeroPensadoOrdenador) { 
+                        System.out.println("El indicado es menor al que tienes que adivinar");
+
+                    } else if (numeroUsuario < numeroPensadoOrdenador) {
+
+                        System.out.println("El indicado es mayor al que tienes que adivinar");
+
+                    } else if (numeroUsuario == numeroPensadoOrdenador) {//premio!!
+                        System.out.println("Felicidades has acertado el numero");
+                    }
+
+                } while (!((contadorIntentos >= 3) || (numeroUsuario == numeroPensadoOrdenador)));
+                if (contadorIntentos == 3) {//si no los acierta al finalizar los intentos
+
+                    System.out.println("No lo has acertado,  el numero a adivinar era: " + numeroPensadoOrdenador);
+                }
+                contadorIntentos = 0;
+                teclado.nextLine();//limpio el buffer
+            } else if (opcionMenu.equalsIgnoreCase("no")) {
+                opcionMenu = "no";
+
+            } else {
+
                 System.out.println("El dato indicado no es el correcto");
+                opcionMenu = "si";
             }
-            
-            
-            
+
         } while (opcionMenu.equalsIgnoreCase("Si"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
     }
 
 }
