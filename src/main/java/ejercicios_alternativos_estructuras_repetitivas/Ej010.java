@@ -45,6 +45,7 @@ public class Ej010 {
 
         do {
             System.out.println("Indique la cantidad total de horas trabajas por el empleado");
+            //controlo los valores negativos
             cantidadHoras =Math.abs(teclado.nextInt()); 
 
             sueldoTotal = (cantidadHoras > 35)
