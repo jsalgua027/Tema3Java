@@ -11,15 +11,17 @@ import java.util.Scanner;
  *
  * @author Windows10
  */
-public class Ej04 {
+public class Ej05 {
 
     /**
      * @param args the command line arguments
      *
-     * elabora un algoritmo para que lea tantos numeros como queramos hasta qye
-     * llegue un numero 0 y muestre la suma de todos ellos
+     *
+     * lle una serie de numeros y calcular la media aritemtica, hasta que llegue
+     * a cero
      */
     public static void main(String[] args) {
+
         Scanner teclado = new Scanner(System.in);
         ArrayList<Integer> listaNumeros = new ArrayList();
 
@@ -44,8 +46,8 @@ public class Ej04 {
         for (int i = 0; i < listaNumeros.size(); i++) {
             resultado += listaNumeros.get(i);
         }
-
-        System.out.println("El resultado de sumar todos los datos introducidos es: " + resultado);
+           double media= resultado/listaNumeros.size();
+        System.out.println("El resultado de sumar todos los datos introducidos es: " + resultado+ " y la media aritmética es de: " + media);
     }
 
 }
