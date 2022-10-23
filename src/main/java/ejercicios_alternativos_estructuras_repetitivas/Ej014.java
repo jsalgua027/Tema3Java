@@ -56,8 +56,11 @@ public class Ej014 {
         do {
             System.out.println(textoMenu);
             opcionMenu = teclado.nextLine();
+
             if (opcionMenu.equalsIgnoreCase("si")) {
+
                 numeroBolita = numAleatorio.nextInt(3 - 1 + 1) + 1;
+                System.out.println("el numero de la bolita es: " + numeroBolita);
                 System.out.println("Introduce el importe pagado por el cliente");
                 importeClienteSinDescuento = teclado.nextDouble();
 
@@ -67,38 +70,46 @@ public class Ej014 {
                         importeClienteConDescuento = importeClienteSinDescuento - (importeClienteSinDescuento * PORCENTAJE_AZUL);
                         String facturaFinal = """
                                                                               ***************************FACTURA**************************
-                                                                                                                         El importe inicial ha sido de:  %.2f euros
-                                                                              Como ha salido la bola %s
-                                                                              Se le aplica un descuento de %.2f
-                                                                              El importe final a pagar es de: %.2f euros
-                                                                                                                         ****************************************************************
+                                                                               El importe inicial ha sido de:  %.2f euros
+                                                                               Como ha salido la bola %s
+                                                                               Se le aplica un descuento de %.2f
+                                                                               El importe final a pagar es de: %.2f euros
+                                                                              ****************************************************************
                                                                       """.formatted(importeClienteSinDescuento, AZUL, importeDescontado, importeClienteConDescuento);
+                        System.out.println(facturaFinal);
+                        opcionMenu = "si";
                     }
                     case 2 -> {
                         importeDescontado = importeClienteSinDescuento * PORCENTAJE_VERDE;
                         importeClienteConDescuento = importeClienteSinDescuento - (importeClienteSinDescuento * PORCENTAJE_VERDE);
                         String facturaFinal2 = """
-                                                                               ***************************FACTURA**************************
-                                                                                                                           El importe inicial ha sido de:  %.2f euros
-                                                                               Como ha salido la bola %s
-                                                                               Se le aplica un descuento de %.2f
-                                                                               El importe final a pagar es de: %.2f euros
-                                                                                                                           ****************************************************************
+                                                                              ***************************FACTURA**************************
+                                                                                El importe inicial ha sido de:  %.2f euros
+                                                                                Como ha salido la bola %s
+                                                                                Se le aplica un descuento de %.2f
+                                                                                El importe final a pagar es de: %.2f euros
+                                                                              ****************************************************************
                                                                        """.formatted(importeClienteSinDescuento, VERDE, importeDescontado, importeClienteConDescuento);
+                        System.out.println(facturaFinal2);
+                        opcionMenu = "si";
                     }
                     default -> {
                         String facturaFinal3 = """
-                                                                                                   ***************************FACTURA**************************
+                                                                             ***************************FACTURA**************************
                                                                               Ha salido la bola blanca no tienes descuento
-                                                                                El importe final a pagar es de: %.2f euros
-                                                                                                    ****************************************************************
+                                                                              El importe final a pagar es de: %.2f euros
+                                                                             ****************************************************************
                                                                                                                              """.formatted(importeClienteSinDescuento);
+                        System.out.println(facturaFinal3);
+                        opcionMenu = "si";
                     }
 
                 }
 
             }
-
+            
+            System.out.println("****************" + opcionMenu);
+           // teclado.nextLine();
         } while (opcionMenu.equalsIgnoreCase("si"));
 
     }
