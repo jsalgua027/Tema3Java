@@ -36,12 +36,12 @@ public class Ej013 {
         if (codigo1 != codigo2) {
             System.out.println("Introduce el tercer digito del 1 al 9");
             codigo3 = teclado.nextInt();
-            if ((codigo1 != codigo3) || (codigo2 != codigo3)) {
+            if ((codigo1 != codigo3) && (codigo2 != codigo3)) {
                 if (!((codigo2 + codigo3) % 2 == 0)) {
                     System.out.println("Introduce el cuarto dígito");
                     codigo4 = teclado.nextInt();
 
-                    if ((codigo1 != codigo4) || (codigo2 != codigo4) || (codigo3 != codigo4)) {
+                    if ((codigo1 != codigo4)&& (codigo2 != codigo4) && (codigo3 != codigo4)) {
 
                         System.out.println("La clave es correcta " + codigo1 + codigo2 + codigo3 + codigo4);
                     } else {
