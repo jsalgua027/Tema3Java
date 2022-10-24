@@ -78,6 +78,7 @@ public class Ej014 {
                                                                       """.formatted(importeClienteSinDescuento, AZUL, importeDescontado, importeClienteConDescuento);
                         System.out.println(facturaFinal);
                         opcionMenu = "si";
+                        teclado.nextLine();
                     }
                     case 2 -> {
                         importeDescontado = importeClienteSinDescuento * PORCENTAJE_VERDE;
@@ -92,6 +93,7 @@ public class Ej014 {
                                                                        """.formatted(importeClienteSinDescuento, VERDE, importeDescontado, importeClienteConDescuento);
                         System.out.println(facturaFinal2);
                         opcionMenu = "si";
+                        teclado.nextLine();
                     }
                     default -> {
                         String facturaFinal3 = """
@@ -102,14 +104,14 @@ public class Ej014 {
                                                                                                                              """.formatted(importeClienteSinDescuento);
                         System.out.println(facturaFinal3);
                         opcionMenu = "si";
+                        teclado.nextLine();
                     }
 
                 }
 
             }
             
-            System.out.println("****************" + opcionMenu);
-           // teclado.nextLine();
+           
         } while (opcionMenu.equalsIgnoreCase("si"));
 
     }
