@@ -16,7 +16,7 @@ public class Ej016 {
      * @param args the command line arguments
      * Una cadena de tiendas de autoservicio cuenta con sucursales en C ciudades diferenres del pais
      * En cada ciudad cuenta con T tiendas y cada tienda cuenta con N empleados, asimismo, cada una 
-     * registra lo que vendio en cada ciudad y cuento recaudó la cadena en un solo día
+     * registra lo que vendido  en cada ciudad y cuento recaudó la cadena en un solo día
      * 
      * Realiza un algoritmo que permita introducir un día lo que vendio cada empleado de
      * cada tienda de cada ciudad y saber las ventas totales por tienda, ciudad y totales- 
