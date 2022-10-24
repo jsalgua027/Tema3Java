@@ -20,6 +20,7 @@ public class Ej08 {
         }
         System.out.println(j);
         // imprime hasta 5
+        //cuenta el numero de interacciones que tiene el bucle
     }
 
 }

@@ -25,6 +25,6 @@ public class Ej04 {
         } while (numero > 1);
 
     }
-    //el primer while termina cunado numero es mayor que 11 y va mostrando numero + 1 por cada ejecucion
+    //el primer while termina cuando numero es mayor que 11 y va mostrando numero + 1 por cada ejecucion
     // en el do while hace lo contrario mientras numero sea mayo que uno va restando uno a numero
 }
