@@ -26,7 +26,7 @@ public class NumerosRomanos {
         final String SEIS = "VI";
         final String SIETE = "VII";
         final String OCHO = "VIII";
-        final String NUEVE = "VIIII";
+        final String NUEVE = "IX";
         final String DIEZ = "X";
 
         int opcionMenu = 0;
@@ -84,7 +84,7 @@ public class NumerosRomanos {
                 case 2 -> {//lector de vocales
                     teclado.nextLine();
                     System.out.println("Has elejido contar vocales, Introduce un nombre: ");
-                    nombre = teclado.nextLine();
+                    nombre = teclado.nextLine().toLowerCase();// para que transforme todas a minusculas
 
                     for (int i = 0; i < nombre.length(); i++) {//bucle que recorre el String
                         //si contiene la vocal se mete en el if y suma al contador

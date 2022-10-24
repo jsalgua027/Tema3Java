@@ -4,7 +4,7 @@
  */
 package ejercicios_alternativos_estructuras_repetitivas;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -22,13 +22,48 @@ public class Ej016 {
      * cada tienda de cada ciudad y saber las ventas totales por tienda, ciudad y totales- 
      */
     public static void main(String[] args) {
-        ArrayList<Integer> ciudades=new ArrayList<>();
-        ArrayList<Integer>tiendas=new ArrayList<>();
-        ArrayList<Integer>vendedores=new ArrayList<>();
+       Scanner teclado =new Scanner(System.in);
+       
         int dia;
-        double vendido;
+        int numeroEmpleados;
+        double vendidoPorEmpleado=0;
+        double vendidoPorTienda=0;
+        double vendidoPorCiudad=0;
+        double totales=0;
+        int opcionMenu;
         
+       String textoMenu="""
+                        
+                                    1.Para introducir las ventas por empleado.
+                                     
+                                    2.Para salir del programa.
+                        
+                        
+                                   """; 
+       
         
+        do {            
+            System.out.println(textoMenu);
+            opcionMenu=teclado.nextInt();
+            
+            if(opcionMenu==1){
+            
+            System.out.println("Introduce lo vendio por el empleado");
+            vendidoPorEmpleado=teclado.nextDouble();
+            vendidoPorTienda=vendidoPorEmpleado++;
+            vendidoPorCiudad=vendidoPorTienda++;
+            totales= vendidoPorCiudad++;
+            
+            }
+            
+            
+         
+            
+        } while (opcionMenu==1);
+        
+        System.out.println("las ventas totales de la tienda: "+ vendidoPorTienda + " Las de ciudad es : " +vendidoPorCiudad+"Las totales:  "+ totales);
+       
+       
         
     }
     
