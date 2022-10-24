@@ -2,21 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package ejercicicio3B;
+package ejercicio3B;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Windows10
  */
-public class LaEsteponeraMejorado {
+public class LaEsteponeraTernario {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // constantes 
 
         final double MANOBRA_POR_UNIDAD_M1T1 = 0.15;
         final double MANOBRA_POR_UNIDAD_M2T2P1 = 0.22;
@@ -38,7 +39,7 @@ public class LaEsteponeraMejorado {
         final int BENEFICIO_SUPERAR = 2500;
         //variables para realizar los  calculos
         double precioMateriaPrimaXUnidad;
-        double costeProduccionProductoXUnidad;
+        double costeProduccionProductoXUnidad = 0;
         double precioVentaProductoXUnidad;
         double beneficioXUnidad;
         int cantidadUnidadesParaBeneficio;
@@ -59,39 +60,30 @@ public class LaEsteponeraMejorado {
                          """;
 
         menuSwitch = JOptionPane.showInputDialog(textoMenu);
+      
         switch (menuSwitch.toUpperCase()) {
             case "M1" ,"M2", "P1","T1","T2" -> {
-                precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+                 // BigDecimal bD= new BigDecimal(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+               precioMateriaPrimaXUnidad = Double.parseDouble(JOptionPane.showInputDialog("Indique el precio de la Materia prima"));
+            //  BigDecimal bd2 = new BigDecimal(precioMateriaPrimaXUnidad); //tipo primitivo decimal
+          //   precioMateriaPrimaXUnidad=bD;
                 // si el precio de la materia prima es correcto
                 if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR) {
-                    if (menuSwitch.equalsIgnoreCase("M1") || menuSwitch.equalsIgnoreCase("T1")) {
+                    //gestiono COSTE PRODUCCION de M1 y T1 con operador ternario
+                    costeProduccionProductoXUnidad
+                            = (menuSwitch.equalsIgnoreCase("M1") || menuSwitch.equalsIgnoreCase("T1"))
+                            ? precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M1T1 : precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M2T2P1;
 
-                        costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M1T1;
-                        if (menuSwitch.equalsIgnoreCase("M1")) {
-                            precioVentaProductoXUnidad
-                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
-                        } else {
-                            precioVentaProductoXUnidad
-                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
+                    precioMateriaPrimaXUnidad = (menuSwitch.equalsIgnoreCase("M1"))
+                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1)
+                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
 
-                        }
+                    // gestiono PRECIO VENTA
+                    precioVentaProductoXUnidad = (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2")||menuSwitch.equalsIgnoreCase("M1"))
+                            ? costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1)
+                            : costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
 
-                    } else {
-
-                        costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + MANOBRA_POR_UNIDAD_M2T2P1;
-                        if (menuSwitch.equalsIgnoreCase("P1") || menuSwitch.equalsIgnoreCase("M2")) {
-
-                            precioVentaProductoXUnidad
-                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
-
-                        } else {
-                            precioVentaProductoXUnidad
-                                    = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
-
-                        }
-
-                    }
-
+                    //obtengo beneficio
                     beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
 
                     cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
@@ -110,12 +102,12 @@ public class LaEsteponeraMejorado {
                     };
 
                     String resultadofinal = """
-                                                            Para los  de %s
+                                                            Para los   %s
                                                             -El precio del coste de produccion por unidad es de:   %.2f euros
                                                             -El precio de venta por unidad es de:  %.2f euros
                                                             Sabiendo que el beneficio por unidad es de:  %.2f  euros
                                                             Para llegar a la cantidad de %d euros de beneficio se necesitan vender:  %d unidades
-                                                                                   """.formatted(textoMenuFinal, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, BENEFICIO_SUPERAR, cantidadUnidadesParaBeneficio);
+                                                                                   """.formatted(textoMenuFinal, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, BENEFICIO_SUPERAR,cantidadUnidadesParaBeneficio);
 
                     JOptionPane.showMessageDialog(null, resultadofinal);
 
@@ -128,6 +120,7 @@ public class LaEsteponeraMejorado {
             default ->
                 JOptionPane.showMessageDialog(null, "opcion incorrecta");
         }
+
     }
 
 }
