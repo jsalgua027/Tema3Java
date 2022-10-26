@@ -110,7 +110,7 @@ public class Ej01 {
                             System.out.println("febrero es una mes especial, indica el año: ");
                             anio = teclado.nextInt();
 
-                            if ((anio % 4 == 0) || (anio % 100 == 0) || (anio % 400 == 0)) {
+                            if ((anio % 4 == 0) &&((anio % 100 != 0) || (anio % 400 != 0)) ) {
                                 System.out.println("El año es bisiesto por lo tanto febrero tendrá 29 días");
 
                             } else {
