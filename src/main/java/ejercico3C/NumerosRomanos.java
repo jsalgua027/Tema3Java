@@ -88,10 +88,17 @@ public class NumerosRomanos {
 
                     for (int i = 0; i < nombre.length(); i++) {//bucle que recorre el String
                         //si contiene la vocal se mete en el if y suma al contador
-                        if ((nombre.charAt(i) == 'a') || (nombre.charAt(i)) == 'e' || (nombre.charAt(i) == 'i')
-                                || (nombre.charAt(i) == 'o') || (nombre.charAt(i) == 'u')) {
-                            contadorVocales++;
-
+//                        if ((nombre.charAt(i) == 'a') || (nombre.charAt(i)) == 'e' || (nombre.charAt(i) == 'i')
+//                                || (nombre.charAt(i) == 'o') || (nombre.charAt(i) == 'u')) {
+//                            contadorVocales++;
+//
+//                        }
+                        // otra forma de hacerlo y es mejor 
+                        
+                        char letraTemporal=' ';
+                        if((letraTemporal=='a')|| (letraTemporal=='e')||(letraTemporal=='i')||(letraTemporal=='o')||(letraTemporal=='u')){
+                        
+                        contadorVocales++;
                         }
 
                     }
