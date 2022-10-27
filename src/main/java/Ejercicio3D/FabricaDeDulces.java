@@ -42,11 +42,11 @@ public class FabricaDeDulces {
 
         Scanner teclado = new Scanner(System.in);
 
-        String opcionMenuPrincipal;//bule control del bucle principal y la seleccion del menu del progrma
-        String opcionMenuProductos;//Para el control de bucles y la seleccion de productos
-        
+        String opcionMenuPrincipal = " ";//bule control del bucle principal y la seleccion del menu del progrma
+        String opcionMenuProductos = " ";//Para el control de bucles y la seleccion de productos
+        String textoMenuFinalPolvorones = " "; // resultado final de todos los cálculos
+
         String menuSwith;
-        
 
         String textoMenuPrincipal = """
                          
@@ -59,8 +59,7 @@ public class FabricaDeDulces {
                          
                                 *********************************************************************
                          """;
-        
-        
+
         String textoMenuProductos = """
                             ************************La Esteponera*********************
                           M1. Para el cálculo con Mantecados de Limón
@@ -71,17 +70,24 @@ public class FabricaDeDulces {
                          
                          ***************************************************************
                          """;
-        
-        
-
-        final double MANOBRA_POR_UNIDAD_M1T1 = 0.15;
-        final double MANOBRA_POR_UNIDAD_M2T2P1 = 0.22;
 
         final double PORCENTAJE_COSTE_PRODUCION_M1M2P1 = 0.5;
         final double PORCENATJE_COSTE_PRODUCCION_T1T2 = 0.65;
 
-        final double LIMITE_INFERIOR = 0.1;
-        final double LIMITE_SUPERIOR = 1;
+        final double LIMITE_INFERIOR_MATERIA_PRIMA = 0.1;
+        final double LIMITE_SUPERIOR_MATERIA_PRIMA = 1;
+
+        final double LIMITE_INFERIOR_MANO_OBRA = 0.5;
+        final double LIMITE_SUPERIOR_MANO_OBRA = 0.9;
+
+        final int BENEFICIO_SUPERAR = 2500;
+        // variables para obtener resultados
+        double precioMateriaPrimaXUnidad;
+        double precioVentaProductoXUnidad;
+        double costeProduccionProductoXUnidad;
+        double beneficioXUnidad;
+        int cantidadUnidadesParaBeneficio;
+        double manoObraPorUnidad;
 
         final String MANTECADOSLIMON = "Mantecados de  Limón";
         final String POLVORONES = "Polvorones";
@@ -91,33 +97,110 @@ public class FabricaDeDulces {
 
         do {
             System.out.println(textoMenuPrincipal);
-            opcionMenuProductos = teclado.nextLine();
-            
-            if(opcionMenuPrincipal.equalsIgnoreCase("inicar")){
-            
-                
-                do {                
+            opcionMenuPrincipal = teclado.nextLine();
+
+            if (opcionMenuPrincipal.equalsIgnoreCase("iniciar")) {
+
+                do {
                     System.out.println(textoMenuProductos);
-                    opcionMenuProductos=teclado.nextLine();
-                    
-                    
-                    
-                    
-                    
-                } while (!((opcionMenuProductos.equalsIgnoreCase("M1")||
-                        (opcionMenuProductos.equalsIgnoreCase("M2")||(opcionMenuProductos.equalsIgnoreCase("p1")||
-                                (opcionMenuProductos.equalsIgnoreCase("T1")||(opcionMenuProductos.equalsIgnoreCase("T2"))));
-                
-            
-            
+                    opcionMenuProductos = teclado.nextLine();
+                    if ((opcionMenuProductos.equalsIgnoreCase("M1")
+                            || opcionMenuProductos.equalsIgnoreCase("P1")
+                            || opcionMenuProductos.equalsIgnoreCase("T1")
+                            || opcionMenuProductos.equalsIgnoreCase("T2")
+                            || opcionMenuProductos.equalsIgnoreCase("M2"))) {
+                        do {
+
+                            System.out.println("Indique el precio de la Materia Prima");
+                            precioMateriaPrimaXUnidad = teclado.nextDouble();
+                            // si el precio de la materia prima es correcto
+                            if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR_MATERIA_PRIMA && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR_MATERIA_PRIMA) {
+
+                                do {
+
+                                    System.out.println("indique el precio de la Mano de Obra Por Unidad: ");
+                                    manoObraPorUnidad = teclado.nextDouble();
+                                    if (manoObraPorUnidad >= LIMITE_INFERIOR_MANO_OBRA && manoObraPorUnidad <= LIMITE_SUPERIOR_MANO_OBRA) {
+
+                                        if (opcionMenuProductos.equalsIgnoreCase("M1") || opcionMenuProductos.equalsIgnoreCase("T1")) {
+
+                                            costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + manoObraPorUnidad;
+                                            if (opcionMenuProductos.equalsIgnoreCase("M1")) {
+                                                precioVentaProductoXUnidad
+                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
+                                            } else {
+                                                precioVentaProductoXUnidad
+                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
+
+                                            }
+
+                                        } else {
+
+                                            costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + manoObraPorUnidad;
+                                            if (opcionMenuProductos.equalsIgnoreCase("P1") || opcionMenuProductos.equalsIgnoreCase("M2")) {
+
+                                                precioVentaProductoXUnidad
+                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
+
+                                            } else {
+                                                precioVentaProductoXUnidad
+                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
+
+                                            }
+
+                                        }
+
+                                        beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
+
+                                        cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
+
+                                        textoMenuFinalPolvorones = switch (opcionMenuProductos.toUpperCase()) {
+                                            case "M1" ->
+                                                MANTECADOSLIMON;
+                                            case "P1" ->
+                                                POLVORONES;
+                                            case "T1" ->
+                                                TURRONCHOCOLATE;
+                                            case "T2" ->
+                                                TURRONCLASICO;
+                                            default ->
+                                                MAZAPANES;
+                                        };
+
+                                        String resultadofinal = """
+                                                            Para los  de %s
+                                                            -El precio del coste de produccion por unidad es de:   %.2f euros
+                                                            -El precio de venta por unidad es de:  %.2f euros
+                                                            Sabiendo que el beneficio por unidad es de:  %.2f  euros
+                                                            Para llegar a la cantidad de %d euros de beneficio se necesitan vender:  %d unidades
+                                                                                   """.formatted(textoMenuFinalPolvorones, costeProduccionProductoXUnidad, precioVentaProductoXUnidad, beneficioXUnidad, BENEFICIO_SUPERAR, cantidadUnidadesParaBeneficio);
+
+                                        System.out.println(resultadofinal);
+
+                                    } else {
+                                        System.out.println("El precio de la Mano de Obra Por Unidad es incorrecto");
+                                    }
+
+                                } while (!(manoObraPorUnidad >= LIMITE_INFERIOR_MANO_OBRA && manoObraPorUnidad <= LIMITE_SUPERIOR_MANO_OBRA));
+
+                            } else {
+                                System.out.println("El precio de la materia prima no es el correcto");
+                            }
+
+                        } while (!(precioMateriaPrimaXUnidad >= LIMITE_INFERIOR_MATERIA_PRIMA && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR_MATERIA_PRIMA));
+
+                    } else {
+                        System.out.println("El codigo de producto es erroneo");
+                    }
+                    teclado.nextLine();
+                } while (!(opcionMenuProductos.equalsIgnoreCase("M1")
+                        || opcionMenuProductos.equalsIgnoreCase("P1")
+                        || opcionMenuProductos.equalsIgnoreCase("T1")
+                        || opcionMenuProductos.equalsIgnoreCase("T2")
+                        || opcionMenuProductos.equalsIgnoreCase("M2")));
+
             }
-            
-            
-            
-            
 
         } while (!opcionMenuPrincipal.equalsIgnoreCase("salir"));
-
     }
-
 }
