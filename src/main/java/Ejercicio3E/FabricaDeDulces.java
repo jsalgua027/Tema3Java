@@ -67,7 +67,7 @@ public class FabricaDeDulces {
                           T1. Para el cálculo con Turrón de Chocolate.
                           T2. Para el cálculo con Turrón Clásico.
                           M2. Para el cálculo con Mazapanes.
-                         
+                                Escriba salir para abandonar el programa.
                          ***************************************************************
                          """;
 
@@ -113,6 +113,7 @@ public class FabricaDeDulces {
 
                             System.out.println("Indique el precio de la Materia Prima");
                             precioMateriaPrimaXUnidad = teclado.nextDouble();
+                            teclado.nextLine();//limpio buffer
                             // si el precio de la materia prima es correcto
                             if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR_MATERIA_PRIMA && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR_MATERIA_PRIMA) {
 
@@ -120,6 +121,7 @@ public class FabricaDeDulces {
 
                                     System.out.println("indique el precio de la Mano de Obra Por Unidad: ");
                                     manoObraPorUnidad = teclado.nextDouble();
+                                    teclado.nextLine();//limpio buffer
                                     // si el coste de mano de obra es el correcto
                                     if (manoObraPorUnidad >= LIMITE_INFERIOR_MANO_OBRA && manoObraPorUnidad <= LIMITE_SUPERIOR_MANO_OBRA) {
                                         //para los productos M1 y T1 costes de produccion
@@ -194,17 +196,21 @@ public class FabricaDeDulces {
                         } while (!(precioMateriaPrimaXUnidad >= LIMITE_INFERIOR_MATERIA_PRIMA && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR_MATERIA_PRIMA));
 
                     } else {
-                        System.out.println("El codigo de producto es erroneo");
+                        if(!opcionMenuProductos.equalsIgnoreCase("salir")){//para que no salga  codigo erroneo con salir
+                             System.out.println("El codigo de producto es erroneo");
+                        }
+                       
                     }
-                    teclado.nextLine();
+             
                 } while (!(opcionMenuProductos.equalsIgnoreCase("M1")
                         || opcionMenuProductos.equalsIgnoreCase("P1")
                         || opcionMenuProductos.equalsIgnoreCase("T1")
                         || opcionMenuProductos.equalsIgnoreCase("T2")
-                        || opcionMenuProductos.equalsIgnoreCase("M2")));
+                        || opcionMenuProductos.equalsIgnoreCase("M2")
+                        || opcionMenuProductos.equalsIgnoreCase("salir")));
 
             }
-
-        } while (!opcionMenuPrincipal.equalsIgnoreCase("salir"));
+               
+        } while (!opcionMenuPrincipal.equalsIgnoreCase("salir")&&(!opcionMenuProductos.equalsIgnoreCase("salir")));
     }
 }
