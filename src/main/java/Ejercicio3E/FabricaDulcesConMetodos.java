@@ -4,6 +4,7 @@
  */
 package Ejercicio3E;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -33,6 +34,7 @@ public class FabricaDulcesConMetodos {
 
     // método para leer códigos del menu Principal
     public static String leerCodigosMenu() {
+
         String aux = teclado.nextLine();
 
         return aux;
@@ -40,20 +42,93 @@ public class FabricaDulcesConMetodos {
 
     //método para filtra opciones menu principal
     public static boolean flitrarMenuPrincipal(String aux) {
+        boolean entra = true;
+        if (aux.equalsIgnoreCase("iniciar")) {
+            entra = true;
+        } else if (aux.equalsIgnoreCase("salir")) {
+            entra = false;
+        } else {
 
-        return aux.equalsIgnoreCase("iniciar");
+            entra = false;
+        }
+
+        return entra;
     }
 
     //metodo para flitar menu de productos
-    
-    public static boolean filtrarMenuProductos(String aux){
-    
-     return aux.equalsIgnoreCase("M1") || aux.equalsIgnoreCase("P1")||
-             aux.equalsIgnoreCase("T1")|| aux.equalsIgnoreCase("T2")|| aux.equalsIgnoreCase("M2");
+    public static boolean filtrarMenuProductos(String aux) {
+
+        return aux.equalsIgnoreCase("M1") || aux.equalsIgnoreCase("P1")
+                || aux.equalsIgnoreCase("T1") || aux.equalsIgnoreCase("T2") || aux.equalsIgnoreCase("M2");
     }
-    
-    
-    
+
+    //metodo para leer materia prima y para mano de obra
+    public static double leerDecimalSinErrores() {
+        double num = 0;
+        boolean repetir = true;
+
+        do {
+            System.out.println("Introduce el numero decimal");
+            try {
+
+                num = teclado.nextDouble();
+                repetir = false;
+
+            } catch (InputMismatchException ime) {
+                System.out.println("No has introducido un numero decimal");
+                //limpio buffer
+                teclado.nextLine();
+            }
+
+        } while (repetir);
+
+        return num;
+    }
+
+    // metodo para el rango de materia prima
+    public static boolean estaDentroRangoMateriaPrima() {
+
+        return (leerDecimalSinErrores() >= 0.1 && leerDecimalSinErrores() <= 1);
+    }
+    // metodo para el rango de materia prima
+
+    public static boolean estaDentroRangoManoDeObra() {
+
+        return (leerDecimalSinErrores() >= 0.5 && leerDecimalSinErrores() <= 0.9);
+    }
+
+    //metodo cálcular coste de produccion version 1
+    public static double costeProducionXUnidad(double materiaPrima, double manoObra) {
+        double aux = 0;
+        aux = materiaPrima + manoObra;
+
+        return aux;
+    }
+
+    // metodo para calcular precio venta
+    public static double precioVentaUnidad(double porcentajeCoste) {
+        double precioVenta = 0;
+        double aux1 = 0;
+        double aux2 = 0;
+        double aux3 = 0;
+        double aux4 = 0;
+        precioVenta = (costeProducionXUnidad(aux1, aux2)) + (costeProducionXUnidad(aux3, aux4) * porcentajeCoste);
+
+        return precioVenta;
+    }
+
+    // metodo para beneficio
+    public static double beneficio() {
+        double beneficio = 0;
+        double aux1 = 0;
+        double aux2 = 0;
+        double aux3 = 0;
+
+        beneficio = costeProducionXUnidad(aux1, aux2) - precioVentaUnidad(aux3);
+
+        return beneficio;
+    }
+
     public static void main(String[] args) {
         //   Scanner teclado = new Scanner(System.in);
 
@@ -112,67 +187,63 @@ public class FabricaDulcesConMetodos {
 
         do {//bucle del menu inicial ---> si escribe salir termina el bucle
             mostarMenu(textoMenuPrincipal);
-          
+
             opcionMenuPrincipal = leerCodigosMenu();
-       
 
             if (flitrarMenuPrincipal(opcionMenuPrincipal)) {
 
                 do {//bucle menu de productos---> si lo mete erroneo se repite el menu de productos
                     mostarMenu(textoMenuProductos);
-                 
-                    opcionMenuProductos=leerCodigosMenu();
-                    
+
+                    opcionMenuProductos = leerCodigosMenu();
+
                     if (filtrarMenuProductos(opcionMenuProductos)) {
                         do { //bucle límite materia prima
 
                             System.out.println("Indique el precio de la Materia Prima");
-                            precioMateriaPrimaXUnidad = teclado.nextDouble();
+                            precioMateriaPrimaXUnidad = leerDecimalSinErrores();
                             teclado.nextLine();//limpio buffer
                             // si el precio de la materia prima es correcto
-                            if (precioMateriaPrimaXUnidad >= LIMITE_INFERIOR_MATERIA_PRIMA && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR_MATERIA_PRIMA) {
+                            if (estaDentroRangoMateriaPrima()) {
 
                                 do {//bucle limite de mano de obra
 
                                     System.out.println("indique el precio de la Mano de Obra Por Unidad: ");
-                                    manoObraPorUnidad = teclado.nextDouble();
+                                    manoObraPorUnidad = leerDecimalSinErrores();
                                     teclado.nextLine();//limpio buffer
                                     // si el coste de mano de obra es el correcto
-                                    if (manoObraPorUnidad >= LIMITE_INFERIOR_MANO_OBRA && manoObraPorUnidad <= LIMITE_SUPERIOR_MANO_OBRA) {
+                                    if (estaDentroRangoManoDeObra()) {
                                         //para los productos M1 y T1 costes de produccion
                                         if (opcionMenuProductos.equalsIgnoreCase("M1") || opcionMenuProductos.equalsIgnoreCase("T1")) {
+                                            costeProducionXUnidad(precioMateriaPrimaXUnidad, manoObraPorUnidad);
 
-                                            costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + manoObraPorUnidad;
                                             //para M1 precio venta por unidad
                                             if (opcionMenuProductos.equalsIgnoreCase("M1")) {
-                                                precioVentaProductoXUnidad
-                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
+
+                                                precioVentaUnidad(PORCENTAJE_COSTE_PRODUCION_M1M2P1);
                                                 //para T1 precio venta por unidad
                                             } else {
-                                                precioVentaProductoXUnidad
-                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
+                                                precioVentaUnidad(PORCENATJE_COSTE_PRODUCCION_T1T2);
 
                                             }
                                             // para P1 M2  T2 costes de produccion
                                         } else {
 
-                                            costeProduccionProductoXUnidad = precioMateriaPrimaXUnidad + manoObraPorUnidad;
+                                            costeProducionXUnidad(precioMateriaPrimaXUnidad, manoObraPorUnidad);
                                             //para P1 y M2 costes de venta por Unidad
                                             if (opcionMenuProductos.equalsIgnoreCase("P1") || opcionMenuProductos.equalsIgnoreCase("M2")) {
 
-                                                precioVentaProductoXUnidad
-                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENTAJE_COSTE_PRODUCION_M1M2P1);
+                                                precioVentaUnidad(PORCENTAJE_COSTE_PRODUCION_M1M2P1);
                                                 //para T2 cpstes de venta por Unidad
                                             } else {
-                                                precioVentaProductoXUnidad
-                                                        = costeProduccionProductoXUnidad + (costeProduccionProductoXUnidad * PORCENATJE_COSTE_PRODUCCION_T1T2);
+                                                precioVentaUnidad(PORCENATJE_COSTE_PRODUCCION_T1T2);
 
                                             }
 
                                         }
                                         //beneficios por unidad para todos los productos
-                                        beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
-
+                                        //   beneficioXUnidad = precioVentaProductoXUnidad - costeProduccionProductoXUnidad;
+                                        beneficioXUnidad = beneficio();
                                         cantidadUnidadesParaBeneficio = (int) Math.ceil(BENEFICIO_SUPERAR / beneficioXUnidad);
 
                                         textoMenuFinalPolvorones = switch (opcionMenuProductos.toUpperCase()) {
@@ -202,13 +273,13 @@ public class FabricaDulcesConMetodos {
                                         System.out.println("El precio de la Mano de Obra Por Unidad es incorrecto");
                                     }
 
-                                } while (!(manoObraPorUnidad >= LIMITE_INFERIOR_MANO_OBRA && manoObraPorUnidad <= LIMITE_SUPERIOR_MANO_OBRA));
+                                } while (!(estaDentroRangoManoDeObra()));
 
                             } else {
                                 System.out.println("El precio de la materia prima no es el correcto");
                             }
 
-                        } while (!(precioMateriaPrimaXUnidad >= LIMITE_INFERIOR_MATERIA_PRIMA && precioMateriaPrimaXUnidad <= LIMITE_SUPERIOR_MATERIA_PRIMA));
+                        } while (!(estaDentroRangoMateriaPrima()));
 
                     } else {
                         if (!opcionMenuProductos.equalsIgnoreCase("salir")) {//para que no salga  codigo erroneo con salir
@@ -226,7 +297,7 @@ public class FabricaDulcesConMetodos {
 
             }
 
-        } while (flitrarMenuPrincipal(opcionMenuPrincipal));
+        } while (flitrarMenuPrincipal(opcionMenuPrincipal) && (!filtrarMenuProductos(opcionMenuPrincipal)));
     }
 
 }
