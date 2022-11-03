@@ -303,7 +303,8 @@ public class LaFabricaConMetodos {
                                                                                    """.formatted(textoMenuFinalPolvorones, costesProduccion, costesVentaXUnidad, BENEFICIO_SUPERAR, cantidadUnidadesBeneficio);
 
                     System.out.println(resultadofinal);
-
+                    teclado.nextLine();//limpio buffer
+                    
                 } else {
                     opcion = "salir";
                 }
