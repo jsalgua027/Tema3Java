@@ -41,7 +41,7 @@ public class FabricaDulcesConMetodos {
     }
 
     //método para filtra opciones menu principal
-    public static boolean flitrarMenuPrincipal(String aux) {
+    public static boolean esCodigoMenuValido(String aux) {
         boolean entra = true;
         if (aux.equalsIgnoreCase("iniciar")) {
             entra = true;
@@ -56,10 +56,11 @@ public class FabricaDulcesConMetodos {
     }
 
     //metodo para flitar menu de productos
-    public static boolean filtrarMenuProductos(String aux) {
+    public static boolean esCodigoProductoValido(String aux) {
 
         return aux.equalsIgnoreCase("M1") || aux.equalsIgnoreCase("P1")
-                || aux.equalsIgnoreCase("T1") || aux.equalsIgnoreCase("T2") || aux.equalsIgnoreCase("M2");
+                || aux.equalsIgnoreCase("T1") || aux.equalsIgnoreCase("T2") || 
+                aux.equalsIgnoreCase("M2");
     }
 
     //metodo para leer materia prima y para mano de obra
@@ -77,7 +78,7 @@ public class FabricaDulcesConMetodos {
             } catch (InputMismatchException ime) {
                 System.out.println("No has introducido un numero decimal");
                 //limpio buffer
-                teclado.nextLine();
+              //  teclado.nextLine();
             }
 
         } while (repetir);
@@ -173,8 +174,8 @@ public class FabricaDulcesConMetodos {
         final int BENEFICIO_SUPERAR = 2500;
         // variables para obtener resultados
         double precioMateriaPrimaXUnidad;
-        double precioVentaProductoXUnidad;
-        double costeProduccionProductoXUnidad;
+        double precioVentaProductoXUnidad=0;
+        double costeProduccionProductoXUnidad=0;
         double beneficioXUnidad;
         int cantidadUnidadesParaBeneficio;
         double manoObraPorUnidad;
@@ -190,14 +191,14 @@ public class FabricaDulcesConMetodos {
 
             opcionMenuPrincipal = leerCodigosMenu();
 
-            if (flitrarMenuPrincipal(opcionMenuPrincipal)) {
+            if (esCodigoMenuValido(opcionMenuPrincipal)) {
 
                 do {//bucle menu de productos---> si lo mete erroneo se repite el menu de productos
                     mostarMenu(textoMenuProductos);
 
                     opcionMenuProductos = leerCodigosMenu();
 
-                    if (filtrarMenuProductos(opcionMenuProductos)) {
+                    if (esCodigoProductoValido(opcionMenuProductos)) {
                         do { //bucle límite materia prima
 
                             System.out.println("Indique el precio de la Materia Prima");
@@ -297,7 +298,7 @@ public class FabricaDulcesConMetodos {
 
             }
 
-        } while (flitrarMenuPrincipal(opcionMenuPrincipal) && (!filtrarMenuProductos(opcionMenuPrincipal)));
+        } while (esCodigoMenuValido(opcionMenuPrincipal) && (!esCodigoProductoValido(opcionMenuPrincipal)));
     }
 
 }
