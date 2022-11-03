@@ -120,12 +120,12 @@ public class LaFabricaConMetodos {
         boolean repetir = true;
 
         do {
-            System.out.println("Introduce la Materia Primal");
+            System.out.println("Introduce la Materia Prima");
             try {
 
                 num = teclado.nextDouble();
                 repetir = false;
-                break;
+              
 
             } catch (InputMismatchException ime) {
                 System.out.println("el dato introducido es erroneo");
@@ -141,15 +141,16 @@ public class LaFabricaConMetodos {
 
     public static boolean filtroMateriaPrima(double materiaPrima) {
 
-        return (materiaPrima >= LIMITE_INFERIOR_MATERIA_PRIMA || materiaPrima <= LIMITE_SUPERIOR_MATERIA_PRIMA);
+        return (materiaPrima >= LIMITE_INFERIOR_MATERIA_PRIMA && materiaPrima <= LIMITE_SUPERIOR_MATERIA_PRIMA);
     }
 
     //pido materia prima
     public static double pidoMateriaPirma() {
         double materiaPrima;
+      
         do {
             materiaPrima = leerMateriaPrima();
-
+          
         } while (!filtroMateriaPrima(materiaPrima));
 
         return materiaPrima;
@@ -185,14 +186,16 @@ public class LaFabricaConMetodos {
     //metodo para rango de mano de obra
     public static boolean filtroManoObra(double manoObra) {
 
-        return (manoObra >= LIMITE_INFERIOR_MANO_OBRA || manoObra <= LIMITE_SUPERIOR_MANO_OBRA);
+        return (manoObra >= LIMITE_INFERIOR_MANO_OBRA && manoObra <= LIMITE_SUPERIOR_MANO_OBRA);
     }
 
     // pido mano de obra
     public static double pidoManoObra() {
         double manoObra;
+        
         do {
             manoObra = leerManoObra();
+        
 
         } while (!filtroManoObra(manoObra));
 
