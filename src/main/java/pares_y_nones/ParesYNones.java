@@ -4,6 +4,9 @@
  */
 package pares_y_nones;
 
+import java.util.Random;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nacho
@@ -34,16 +37,65 @@ public class ParesYNones {
      * @param args the command line arguments
      */
     
-    private final String menuJuego="""
+
+     private static Random numerosRandom = new Random();
+    
+    private  static final String menuJuego="""
                                    
                                    ***********************Bienvenido a Pares y Nones******************
+                                   
                                                     -Escriba Iniciar para comenzar el programa
                                                     -Escriba salir para finalizar el programa
                                    
-                                   
+                                   *********************************************************************
                                    """;
+    
+    
+    //muestro menu y meto dato
+    private static String MuestroPidoMenu(){
+    String opcion;
+    
+        opcion=JOptionPane.showInputDialog(menuJuego);
+    
+    
+    return opcion;
+    }
+    
+    // valido opcion 
+    public static boolean esValidoOpcion(String opcion){
+    
+    
+    return opcion.equalsIgnoreCase("iniciar")|| opcion.equalsIgnoreCase("salir");
+    }
+    
+    
+    //gestiono menu
+    
+    public static String gestionoMenu(){
+    String opcion;
+        do {            
+            
+            opcion=MuestroPidoMenu();
+            
+        } while (!esValidoOpcion(opcion));
+    
+    return opcion;
+    }
+    
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+       String opcion="";
+       
+        
+        do {            
+            
+             gestionoMenu();
+            
+            
+        } while (opcion.equalsIgnoreCase("salir"));
+        
+        
+        
     }
     
 }
