@@ -56,6 +56,12 @@ public class ParesYNones {
                                             
                                             """;
 
+    private static final String rondas = """
+                                                En este juego no existe el empate elige rondas Impares
+                                                            ¿Cuantas rondas quieres jugar?
+                                            
+                                            """;
+
     //*******************MENU INICIAL***************
     //muestro menu y meto dato
     private static String MuestroPidoMenu() {
@@ -82,6 +88,34 @@ public class ParesYNones {
         } while (!esValidoOpcion(opcion));
 
         return opcion;
+    }
+
+    //******************SELECCION Y GESTION DE RONDAS*************
+    // muestro y pido Numero de rondas
+    private static int muestroPidoRondas() {
+        int numeroRondas = 0;
+        boolean repetir = true;
+        do {
+            repetir = true;
+
+            do {
+
+                try {
+
+                    numeroRondas = Integer.parseInt(JOptionPane.showInputDialog(rondas));
+                    repetir = false;
+
+                } catch (NumberFormatException nfe) {
+                    JOptionPane.showMessageDialog(null, "El dato Introducido es erroneo");
+                    //limpio buffer
+
+                }
+
+            } while (repetir);
+
+        } while (numeroRondas < 1 || numeroRondas % 2 == 0);
+
+        return numeroRondas;
     }
 
     // seleccion de pares y nones
@@ -184,20 +218,18 @@ public class ParesYNones {
                 JOptionPane.showMessageDialog(null, "Sale  Pares,  gana jugador");
             } else if (!(total % 2 == 0)) {
                 gana = false;
-                 JOptionPane.showMessageDialog(null, "Sale Nones,  gana Maquina");
+                JOptionPane.showMessageDialog(null, "Sale Nones,  gana Maquina");
             }
-           
 
         } else if (opcion.equalsIgnoreCase("Nones")) {//nones ganando jugador
 
             if (total % 2 == 0) { //Nones gana ------> nones true
                 gana = false;
                 JOptionPane.showMessageDialog(null, "sale Pares, gana Maquina");
-            } else if  (!(total % 2 == 0)) {
+            } else if (!(total % 2 == 0)) {
                 gana = true;
-                  JOptionPane.showMessageDialog(null, " Sale Nones, gana Jugador");
+                JOptionPane.showMessageDialog(null, " Sale Nones, gana Jugador");
             }
-          
 
         }
 
@@ -210,67 +242,95 @@ public class ParesYNones {
         String paresONones = "";
         int jugadorNumeroDedos;
         int maquinaNumeroDedos;
-        boolean quienGana; // el ganador siempre es true
-
+        boolean quienGana = true; // el ganador siempre es true
+        int numeroRondasElegidas = 0;
+        int contadorRondas = 0;
+        int contadorVictoriasJugador = 0;
+        int contadorVictoriasMaquina = 0;
+        boolean ganador = true;
         do {
 
             opcion = gestionoMenu();
             if (opcion.equalsIgnoreCase("iniciar")) {
+                numeroRondasElegidas = muestroPidoRondas();
+                do {
 
-                manos = cuantasManos();
+                    manos = cuantasManos();
+                    switch (manos) {
+                        case "una" -> {
+                            //con una mano
+                            paresONones = seleccionParesYNones();
+                            switch (paresONones) {
+                                case "pares" -> {
+                                    JOptionPane.showMessageDialog(null, "estas en pares");
+                                    jugadorNumeroDedos = numeroDedosJugador(manos);
+                                    maquinaNumeroDedos = numeroDedosMaquina(manos);
+                                    quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
+                                    System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
+                                }
+                                case "nones" -> {
+                                    JOptionPane.showMessageDialog(null, "estas en nones");
+                                    jugadorNumeroDedos = numeroDedosJugador(manos);
+                                    maquinaNumeroDedos = numeroDedosMaquina(manos);
+                                    quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
+                                    System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
+                                }
+                                default -> {
+                                }
 
-                switch (manos) {
-                    case "una":
-                        //con una mano
-                        paresONones = seleccionParesYNones();
-                        switch (paresONones) {
-                            case "pares":
-                                JOptionPane.showMessageDialog(null, "estas en pares");
-                                jugadorNumeroDedos = numeroDedosJugador(manos);
-                                maquinaNumeroDedos = numeroDedosMaquina(manos);
-                                quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
-                                System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
-                                break;
-                            case "nones":
-                                JOptionPane.showMessageDialog(null, "estas en nones");
-                                jugadorNumeroDedos = numeroDedosJugador(manos);
-                                maquinaNumeroDedos = numeroDedosMaquina(manos);
-                                quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
-                                System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
-                                break;
-                            default:
-
+                            }
                         }
-                        break;
-                    //con dos manos
-                    case "dos":
-                        opcion = seleccionParesYNones();
-                        switch (opcion) {
-                            case "pares":
-                                JOptionPane.showMessageDialog(null, "estas en pares");
-                                jugadorNumeroDedos = numeroDedosJugador(manos);
-                                maquinaNumeroDedos = numeroDedosMaquina(manos);
-                                quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
-                                System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
+                        case "dos" -> {
+                            opcion = seleccionParesYNones();
+                            switch (opcion) {
+                                case "pares" -> {
+                                    JOptionPane.showMessageDialog(null, "estas en pares");
+                                    jugadorNumeroDedos = numeroDedosJugador(manos);
+                                    maquinaNumeroDedos = numeroDedosMaquina(manos);
+                                    quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
+                                    System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
+                                }
+                                case "nones" -> {
+                                    JOptionPane.showMessageDialog(null, "estas en nones");
+                                    jugadorNumeroDedos = numeroDedosJugador(manos);
+                                    maquinaNumeroDedos = numeroDedosMaquina(manos);
+                                    quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
+                                    System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
+                                }
+                                default -> {
+                                }
 
-                                break;
-                            case "nones":
-                                JOptionPane.showMessageDialog(null, "estas en nones");
-                                jugadorNumeroDedos = numeroDedosJugador(manos);
-                                maquinaNumeroDedos = numeroDedosMaquina(manos);
-                                quienGana = resultadoJuego(paresONones, jugadorNumeroDedos, maquinaNumeroDedos);
-                                System.out.println("numero dedos juagdor: " + jugadorNumeroDedos + " numero dedos maquina: " + maquinaNumeroDedos + " quien gana es : " + quienGana);
-
-                               
-                                break;
-                            default:
-
+                            }
                         }
 
-                        break;
-                    default:
+                        default -> {
+                        }
 
-                }
+                    }
+
+                    //sumo cada ronda
+                    contadorRondas++;
+                    JOptionPane.showMessageDialog(null, " Vas por la ronda: "+contadorRondas);
+                    //cuento el numero de vitorias
+                    if (quienGana == true) {
+                        contadorVictoriasJugador++;
+                    } else {
+                        contadorVictoriasMaquina++;
+                    }
+
+                    //si las victorias del numero de maquina o jugador es mayor que la mitad del numero 
+                    //de rondas total se da por ganador. con el ceil cosingo resultados enteros
+                    //para que no me de problemas el bucle.
+                    if (contadorVictoriasJugador >= Math.ceil(numeroRondasElegidas / 2)) {
+                        JOptionPane.showMessageDialog(null, "El jugador ha ganado la partida");
+                        break;
+                    }
+                    if (contadorVictoriasMaquina >= Math.ceil(numeroRondasElegidas / 2)) {
+                        JOptionPane.showMessageDialog(null, "La Maquina  ha ganado la partida");
+                        break;
+                    }
+
+                } while (contadorRondas < numeroRondasElegidas);
 
             }
 
