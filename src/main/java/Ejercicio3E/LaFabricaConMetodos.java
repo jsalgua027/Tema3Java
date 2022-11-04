@@ -260,24 +260,10 @@ public class LaFabricaConMetodos {
                 if (!codigoProducto.equalsIgnoreCase("salir")) {
                     materiaPrima = pidoMateriaPirma();
                     manoDeObra = pidoManoObra();
-                    if (codigoProducto.equalsIgnoreCase("M1") || codigoProducto.equalsIgnoreCase("T1")) {
+                    //calculos
+                        costesProduccion=costesProduccion(materiaPrima, manoDeObra);
+                        costesVentaXUnidad=precioVentaXUnidad(codigoProducto, costesProduccion);
 
-                        costesProduccion = costesProduccion(materiaPrima, manoDeObra);
-                        if (codigoProducto.equalsIgnoreCase("M1")) {
-                            costesVentaXUnidad = precioVentaXUnidad(codigoProducto, costesProduccion);
-                        } else {
-                            costesVentaXUnidad = precioVentaXUnidad(codigoProducto, costesProduccion);
-                        }
-                    } else {
-                        costesProduccion = costesProduccion(materiaPrima, manoDeObra);
-                        if (codigoProducto.equalsIgnoreCase("P1") || codigoProducto.equalsIgnoreCase("M2")) {
-                            costesVentaXUnidad = precioVentaXUnidad(codigoProducto, costesProduccion);
-
-                        } else {
-
-                            costesVentaXUnidad = precioVentaXUnidad(codigoProducto, costesProduccion);
-                        }
-                    }
                     //calculo unidades para beneficio
                     cantidadUnidadesBeneficio = unidadesParaBeneficio(costesVentaXUnidad, costesProduccion);
 
