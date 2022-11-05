@@ -64,7 +64,7 @@ public class ParesYNones {
 
     //*******************MENU INICIAL***************
     //muestro menu y meto dato
-    private static String MuestroPidoMenu() {
+    private static String muestroPidoMenu() {
         String opcion;
 
         opcion = JOptionPane.showInputDialog(menuJuego);
@@ -83,7 +83,7 @@ public class ParesYNones {
         String opcion;
         do {
 
-            opcion = MuestroPidoMenu();
+            opcion = muestroPidoMenu();
 
         } while (!esValidoOpcion(opcion));
 
