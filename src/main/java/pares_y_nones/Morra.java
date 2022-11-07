@@ -19,8 +19,8 @@ public class Morra {
     private static Random numerosRandom = new Random();
     private static int JugadorNumeroDedos = 0;
     private static int maquinaNumeroDedos = 0;
-    private static int numeroGanadorJugador = 0;
-    private static int numeroGanadorMaquina = 0;
+    private static int numeroApuestaJugador = 0;
+    private static int numeroApuestaMaquina = 0;
 
     private static final String menuJuego = """
                                    
@@ -95,9 +95,9 @@ public class Morra {
     }
 
     //***************** NUMERO A ACERTAR  JUGADOR Y MAQUINA*********************
-    private static int pidoNumeroGanadorJugador() {
+    private static int pidoNumeroApuestaJugador() {
         boolean repetir = true;
-        numeroGanadorJugador = 0;
+        numeroApuestaJugador = 0;
 
         do {
 
@@ -105,7 +105,7 @@ public class Morra {
 
                 try {
 
-                    numeroGanadorJugador = Integer.parseInt(JOptionPane.showInputDialog("Que número va ser el Ganador"));
+                    numeroApuestaJugador = Integer.parseInt(JOptionPane.showInputDialog("Que número va ser el Ganador"));
                     repetir = false;
 
                 } catch (NumberFormatException nfe) {
@@ -118,13 +118,13 @@ public class Morra {
 
         } while (JugadorNumeroDedos > 10);
 
-        return numeroGanadorJugador;
+        return numeroApuestaJugador;
 
     }
     
-    private static int numeroGanadorMaquina(){
-    numeroGanadorMaquina=numerosRandom.nextInt(10-0+1)+0;
-     return numeroGanadorMaquina;
+    private static int numeroApuestaMaquina(){
+    numeroApuestaMaquina=numerosRandom.nextInt(10-0+1)+0;
+     return numeroApuestaMaquina;
     }
     
     //*************NUMERO DE DEDOS JUGADOR Y MAQUINA**********************
@@ -160,7 +160,7 @@ public class Morra {
     return  maquinaNumeroDedos;
     }
     
-    
+   
 
     public static void main(String[] args) {
         String opcion = "";// gestion menu
@@ -170,22 +170,48 @@ public class Morra {
         int numeroRondasPedidas = 0;//solicitud de datos
         int numeroGanadorJugador = 0;
         int numeroGanadorMaquina = 0;
-        int numeroDedosJugador = 0;
-        int numeroDedosMaquina = 0;
+        int numeroSacadoJugador = 0;
+        int numeroSacadoMaquina = 0;
+        int numeroPremiado=0;
+        boolean finJuego=true;
 
         opcion = gestionoMenu();
 
         do {
             if (opcion.equalsIgnoreCase("iniciar")) {
-
+                    finJuego=false;
                 do {
-                    numeroRondasPedidas = muestroPidoRondas();
-                    numeroGanadorJugador=pidoNumeroGanadorJugador();
-                    numeroGanadorMaquina=numeroGanadorMaquina();
-                    numeroDedosJugador=numeroDedosJugador();
-                    numeroDedosMaquina=numeroDedosMaquina();
-                    contadorRondas++;//control de rondas
-                } while (contadorRondas < numeroRondasPedidas);
+                
+                    numeroGanadorJugador=pidoNumeroApuestaJugador();
+                    numeroGanadorMaquina=numeroApuestaMaquina();
+                    numeroSacadoJugador=numeroDedosJugador();
+                    numeroSacadoMaquina=numeroDedosMaquina();
+                    //obtengo el numero ganador
+                    numeroPremiado=numeroSacadoJugador+numeroSacadoMaquina;
+                   
+                    //contar victorias
+                    if(numeroGanadorJugador==numeroPremiado){
+                        JOptionPane.showMessageDialog(null,"Ha ganado jugador la ronda");
+                        victoriasJugador++;
+                    }else if (numeroPremiado==numeroGanadorMaquina){
+                         JOptionPane.showMessageDialog(null,"Ha ganado Maquina la ronda");
+                         victoriasMaquina++;
+                    }
+                    //logica de premios
+                    if((victoriasJugador>=3 && victoriasJugador>=victoriasMaquina+2)){
+                    JOptionPane.showMessageDialog(null,"Ha ganado  el jugador la partida");
+                    finJuego=true;
+                    }else if((victoriasMaquina>=3&&victoriasMaquina>=victoriasJugador+2)){
+                    JOptionPane.showMessageDialog(null,"Ha ganado la Maquina la partida");
+                    finJuego=true;
+                    }
+                    if(contadorRondas==21){
+                           JOptionPane.showMessageDialog(null,"Se ha llegado a la ronda 21 y no tenemos ganador");
+                    }
+                    
+                    
+                     contadorRondas++;//control de rondas
+                } while (!finJuego);
                 break;
             }
 
