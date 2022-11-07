@@ -191,18 +191,22 @@ public class Morra {
                    
                     //contar victorias
                     if(numeroGanadorJugador==numeroPremiado){
-                        JOptionPane.showMessageDialog(null,"Ha ganado jugador la ronda");
+                        JOptionPane.showMessageDialog(null,"Ha ganado jugador la ronda: "+
+                                contadorRondas+ " Es la victoria numero: "+ victoriasJugador);
                         victoriasJugador++;
                     }else if (numeroPremiado==numeroGanadorMaquina){
-                         JOptionPane.showMessageDialog(null,"Ha ganado Maquina la ronda");
+                         JOptionPane.showMessageDialog(null,"Ha ganado Maquina la ronda: " 
+                                 + contadorRondas+ " Es la victoria numero: "+ victoriasMaquina);
                          victoriasMaquina++;
                     }
                     //logica de premios
                     if((victoriasJugador>=3 && victoriasJugador>=victoriasMaquina+2)){
-                    JOptionPane.showMessageDialog(null,"Ha ganado  el jugador la partida");
+                    JOptionPane.showMessageDialog(null,"Ha ganado  el jugador la partida con: "+ victoriasJugador+ 
+                            " victorias  sobre "+ victoriasMaquina+" victorias de la maquina");
                     finJuego=true;
                     }else if((victoriasMaquina>=3&&victoriasMaquina>=victoriasJugador+2)){
-                    JOptionPane.showMessageDialog(null,"Ha ganado la Maquina la partida");
+                    JOptionPane.showMessageDialog(null,"Ha ganado la Maquina la partida con: "+ victoriasMaquina+
+                            " victorias sobre  "+ victoriasJugador+  " victorias del jugador");
                     finJuego=true;
                     }
                     if(contadorRondas==21){
