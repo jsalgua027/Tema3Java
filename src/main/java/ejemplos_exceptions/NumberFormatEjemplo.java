@@ -16,8 +16,8 @@ public class NumberFormatEjemplo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int edad1 = leerNumeroEntero();
-        System.out.println("Edad 1: " + edad1);
+//        int edad1 = leerNumeroEntero();
+//        System.out.println("Edad 1: " + edad1);
         int edad2 = leerNumeroEnteroSinErrores();
         System.out.println("Edad 2: " + edad2);
     }

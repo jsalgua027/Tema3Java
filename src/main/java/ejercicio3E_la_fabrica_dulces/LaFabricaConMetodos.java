@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package Ejercicio3E;
+package ejercicio3E_la_fabrica_dulces;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

@@ -20,8 +20,8 @@ public class InputMismatchEjemplo {
     private static Scanner flujo = new Scanner(System.in);
 
     public static void main(String[] args) {
-        leerCalificacion();
-        leerCalificacionSinErrores();
+    //    leerCalificacion();
+     //   leerCalificacionSinErrores();
         leerCalificacionSinErroresBucle();
 
     }
