@@ -66,36 +66,36 @@ public class Morra {
         return opcion;
     }
 
-    //******************** RONDAS***********************
-    // muestro y pido Numero de rondas
-    private static int muestroPidoRondas() {
-        int numeroRondas = 0;
-        boolean repetir = true;
-        do {
-            repetir = true;
+//    //******************** RONDAS***********************
+//    // muestro y pido Numero de rondas
+//    private static int muestroPidoRondas() {
+//        int numeroRondas = 0;
+//        boolean repetir = true;
+//        do {
+//            repetir = true;
+//
+//            do {
+//
+//                try {
+//
+//                    numeroRondas = Integer.parseInt(JOptionPane.showInputDialog(rondas));
+//                    repetir = false;
+//
+//                } catch (NumberFormatException nfe) {
+//                    JOptionPane.showMessageDialog(null, "El dato Introducido es erroneo");
+//                    //limpio buffer
+//
+//                }
+//
+//            } while (repetir);
+//
+//        } while (numeroRondas < 1 || numeroRondas % 2 == 0);
+//
+//        return numeroRondas;
+//    }
 
-            do {
-
-                try {
-
-                    numeroRondas = Integer.parseInt(JOptionPane.showInputDialog(rondas));
-                    repetir = false;
-
-                } catch (NumberFormatException nfe) {
-                    JOptionPane.showMessageDialog(null, "El dato Introducido es erroneo");
-                    //limpio buffer
-
-                }
-
-            } while (repetir);
-
-        } while (numeroRondas < 1 || numeroRondas % 2 == 0);
-
-        return numeroRondas;
-    }
-
-    //***************** NUMERO A ACERTAR  JUGADOR Y MAQUINA*********************
-    private static int pidoNumeroApuestaJugador() {
+    //***************** NUMERO APUESTA  JUGADOR Y MAQUINA*********************
+    private static int numeroApuestaJugador() {
         boolean repetir = true;
         numeroApuestaJugador = 0;
 
@@ -116,7 +116,7 @@ public class Morra {
 
             } while (repetir);
 
-        } while (JugadorNumeroDedos > 10);
+        } while (numeroApuestaJugador> 10);
 
         return numeroApuestaJugador;
 
@@ -164,9 +164,9 @@ public class Morra {
 
     public static void main(String[] args) {
         String opcion = "";// gestion menu
-        int contadorRondas = 0;//Rondas
-        int victoriasJugador=0;//victorias
-        int victoriasMaquina=0;
+        int contadorRondas = 1;//Rondas
+        int victoriasJugador=1;//victorias
+        int victoriasMaquina=1;
         int numeroRondasPedidas = 0;//solicitud de datos
         int numeroGanadorJugador = 0;
         int numeroGanadorMaquina = 0;
@@ -182,7 +182,7 @@ public class Morra {
                     finJuego=false;
                 do {
                 
-                    numeroGanadorJugador=pidoNumeroApuestaJugador();
+                    numeroGanadorJugador=numeroApuestaJugador();
                     numeroGanadorMaquina=numeroApuestaMaquina();
                     numeroSacadoJugador=numeroDedosJugador();
                     numeroSacadoMaquina=numeroDedosMaquina();
@@ -191,21 +191,25 @@ public class Morra {
                    
                     //contar victorias
                     if(numeroGanadorJugador==numeroPremiado){
-                        JOptionPane.showMessageDialog(null,"Ha ganado jugador la ronda: "+
+                        JOptionPane.showMessageDialog(null,"Ha ganado JUGADOR la ronda: "+
                                 contadorRondas+ " Es la victoria numero: "+ victoriasJugador);
                         victoriasJugador++;
                     }else if (numeroPremiado==numeroGanadorMaquina){
-                         JOptionPane.showMessageDialog(null,"Ha ganado Maquina la ronda: " 
+                         JOptionPane.showMessageDialog(null,"Ha ganado MAQUINA la ronda: " 
                                  + contadorRondas+ " Es la victoria numero: "+ victoriasMaquina);
                          victoriasMaquina++;
                     }
+                    if(numeroGanadorJugador!=numeroPremiado&& numeroGanadorMaquina!=numeroPremiado){
+                    JOptionPane.showMessageDialog(null, "En la ronda: "+ contadorRondas+ " NADIE ha ganado");
+                    
+                    }
                     //logica de premios
                     if((victoriasJugador>=3 && victoriasJugador>=victoriasMaquina+2)){
-                    JOptionPane.showMessageDialog(null,"Ha ganado  el jugador la partida con: "+ victoriasJugador+ 
+                    JOptionPane.showMessageDialog(null,"Ha ganado  el JUGADOR la partida con: "+ victoriasJugador+ 
                             " victorias  sobre "+ victoriasMaquina+" victorias de la maquina");
                     finJuego=true;
                     }else if((victoriasMaquina>=3&&victoriasMaquina>=victoriasJugador+2)){
-                    JOptionPane.showMessageDialog(null,"Ha ganado la Maquina la partida con: "+ victoriasMaquina+
+                    JOptionPane.showMessageDialog(null,"Ha ganado la MAQUINA la partida con: "+ victoriasMaquina+
                             " victorias sobre  "+ victoriasJugador+  " victorias del jugador");
                     finJuego=true;
                     }
