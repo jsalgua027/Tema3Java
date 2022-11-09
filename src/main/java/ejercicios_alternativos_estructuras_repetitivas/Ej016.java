@@ -74,11 +74,25 @@ public class Ej016 {
                             System.out.println("¿Cuanto vendio el empleado");
                             vendidoPorEmpleado = teclado.nextDouble();
                             ventaTotalempleados = +vendidoPorEmpleado;
+                            // ventaTotalempleados=+ventaTotalempleados;
                         }
-
+                        //ventasTotalesTienda=+ventasTotalesTienda;
                     }
-
+                    //ventasTotalesCiudad=+ventasTotalesCiudad;
                 }
+
+                /**
+                 * FIBONACHI TUUUUUUUS MUERTOS!!!!!!!!!!!!!!!!!!!!!!
+                 *  //calculo el termino que toca
+                 * fn=fn1+fn2; 
+                 * // actualizo las dos anteriores para poder calcular el siguente
+                 * 
+                 * fn2=fn1;
+                 * fn1=fn;
+                 *
+                 *
+                 *
+                 */
                 totales = ventasTotalesCiudad + ventasTotalesTienda;
                 System.out.println("las ventas totales de la tienda: " + ventasTotalesTienda + " Las de ciudad es : " + ventasTotalesCiudad + " Las totales:  " + totales);
 
