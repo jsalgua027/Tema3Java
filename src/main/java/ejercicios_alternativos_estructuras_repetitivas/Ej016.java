@@ -91,7 +91,7 @@ public class Ej016 {
                  * fn1=fn;
                  *
                  *
-                 *
+                 * esperando posible solucion
                  */
                 totales = ventasTotalesCiudad + ventasTotalesTienda;
                 System.out.println("las ventas totales de la tienda: " + ventasTotalesTienda + " Las de ciudad es : " + ventasTotalesCiudad + " Las totales:  " + totales);
